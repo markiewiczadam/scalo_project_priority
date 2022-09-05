@@ -72,12 +72,6 @@
       </div>
     </div>
   </div>
-    
-    
-    <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
-    <!-- <script src="js/popper.min.js"></script> -->
-    <!-- <script src="js/bootstrap.min.js"></script> -->
-    <!-- <script src="js/main.js"></script> -->
 	
 	
 	<!-- Script for search function -->
@@ -107,7 +101,7 @@
 	<script>
 	function callApi(updtype, vacid)
 		{
-		var getUrl = "http://localhost:5000/api/" + updtype + "/" + vacid
+		var getUrl = "http://vacancypriority.azurewebsites.net/api/" + updtype + "/" + vacid
 
 		var xmlHttp = new XMLHttpRequest();
 		  xmlHttp.open( "GET", getUrl, false ); // false for synchronous request
