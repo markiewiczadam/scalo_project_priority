@@ -57,7 +57,7 @@ img {max-width: 100%}
 
 
 .custom-table {
-  min-width: 1000px; font-size: 13px;}
+  min-width: 500px; font-size: 13px;}
   .custom-table thead tr, .custom-table thead th {
     border-top: none;
     border-bottom: none !important; }
