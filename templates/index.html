@@ -1,12 +1,118 @@
-<!DOCTYPE html>
-<html>
-<head>
- <title>Main Page</title>
- <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-</head>
-<body>
-<h2>Vehicle info dashboard</h2>
-<p align="center"><a href=vacancies ><button class=grey style="height:75px;width:150px">vmd timestamp</button></a></p>
-</body>
+    <!-- <link rel="stylesheet" href="fonts/icomoon/style.css"> -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css"> 	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/style.css">	<!-- Style -->
+
+    <title>SCALO vacancy priority</title>
+	<link rel="icon" type="image/x-icon" href="css/favicon.png">
+  </head>
+  <body>
+  
+
+  <div class="content">
+    
+    <div class="container">
+		<div class="am-container">
+			<div class="am-image"> <img src="css/logo-scalo.jpg"> </div>
+			<div class="am-text"> | vacancy priority </div>
+		</div>
+		
+		
+
+      <div class="table-responsive">
+		<br>
+		
+		<div>
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for clients of vacancies..." title="Search for clients of vacancies">
+		</div>
+		
+        <table class="table custom-table" id="myTable">
+          <thead>
+            <tr>
+              <th scope="col">vacancy title</th>
+              <th scope="col"><center>cli vac</center></th>
+              <th scope="col"><center>cli vac rank</center></th>
+              <th scope="col"><center>tech area</center></th>
+              <th scope="col"><center>tech area rank</center></th>
+              <th scope="col">seniority</th>
+              <th scope="col"><center>seniority rank</center></th>
+              <th scope="col"><center>additional rank</center></th>
+              <th scope="col"><center>summary</center></th>
+			  <th scope="col"><center></center></th>			  
+            </tr>
+          </thead>
+          <tbody>	
+			{% for row in data %}
+            <tr>
+              <td><b>{{row[0]}}</b> <small class="d-block">{{row[1]}}</small> </td>
+              <td><center>{{row[2]}}</center></td>
+              <td><center>{{row[3]}}</center></td>
+              <td><center>{{row[4]}}</center></td>
+              <td><center>{{row[5]}}</center></td>
+              <td>{{row[6]}}</td>
+              <td><center>{{row[7]}}</center></td>
+              <td><center>{{row[8]}}</center></td>
+              <td><b><center>{{row[9]}}</center></b></td>
+			  <td><center> 
+							<button class="up-button" onclick="callApi('up', {{row[10]}}); window.location.reload()"></button>
+							<button class="down-button" onclick="callApi('down', {{row[10]}}); window.location.reload()"></button>
+					</center></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+	
+	
+	<!-- Script for search function -->
+	<script>
+	function myFunction() {
+	  var input, filter, table, tr, td, i, txtValue;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("myTable");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[0];
+		if (td) {
+		  txtValue = td.textContent || td.innerText;
+		  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			tr[i].style.display = "";
+		  } else {
+			tr[i].style.display = "none";
+		  }
+		}       
+	  }
+	}
+	</script>
+	
+	
+	<!-- Script to update rows -->
+	<script>
+	function callApi(updtype, vacid)
+		{
+		var protocol = window.location.protocol
+        var host = window.location.host
+
+		var getUrl = protocol + "//" + host + "/api/" + updtype + "/" + vacid
+
+		var xmlHttp = new XMLHttpRequest();
+		  xmlHttp.open( "GET", getUrl, false ); // false for synchronous request
+		  xmlHttp.send( null );
+		  return xmlHttp.responseText;
+		}
+	</script>
+	
+	
+  </body>
 </html>

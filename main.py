@@ -36,11 +36,10 @@ def updateVacancy(updtype, vacid):
 app = Flask(__name__, static_folder='templates/css')
 
 @app.route('/')
-def v_timestamp():
-    msg = 'Test Message!'
+def mainpage():
     mycursor.execute("SELECT * FROM mi.v_vacancy_priority_rank ORDER BY sum_rank DESC")
     data = mycursor.fetchall()
-    return render_template('vacancies2.html', data=data)
+    return render_template('index.html', data=data)
 
 
 @app.route('/api/<updtype>/<vacid>')
