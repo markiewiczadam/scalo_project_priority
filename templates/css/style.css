@@ -1,0 +1,104 @@
+body {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background-color: #fff;
+  font-weight: 300; }
+
+p {
+  color: #b3b3b3;
+  font-weight: 300; }
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease; }
+  a, a:hover {
+    text-decoration: none !important; }
+
+.content {
+  padding: 2rem 0; }
+
+h2 {
+  font-size: 20px; position: relative; color: #7F7F7F}
+ 
+ 
+ /*# AM Custom styles - START */
+ 
+.am-container {display: flex; align-items: center; justify-content: left}
+img {max-width: 100%}
+.am-image {flex-basis: 10%}
+.am-text {font-size: 30px; padding-left: 10px; padding-top: 10px; color: #7F7F7F}  
+
+.up-button{background-image: url("up-button0.png"); height: 12px; width: 20px; border: none; transition-duration: 0.2s;}
+.up-button:hover{background-image: url("up-button1.png")}
+
+.down-button{background-image: url("down-button0.png"); height: 12px; width: 20px; border: none; transition-duration: 0.2s;}
+.down-button:hover{background-image: url("down-button1.png")}
+
+#myInput {
+  background-image: url('/css/search-ico1.png');
+  background-position: 10px 7px;
+  background-repeat: no-repeat;
+  width: 40%;
+  height: 30px;
+  font-size: 14px;
+  padding: 12px 12px 12px 30px;
+  border: none;
+  margin-bottom: 8px;
+  outline: none;
+  display: block;
+}
+
+ /*# AM Custom styles - END */
+ 
+
+
+.custom-table {
+  min-width: 1000px; font-size: 13px;}
+  .custom-table thead tr, .custom-table thead th {
+    border-top: none;
+    border-bottom: none !important; }
+  .custom-table tbody th, .custom-table tbody td {
+    color: #777;
+    font-weight: 400;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-weight: 300; }
+    .custom-table tbody th small, .custom-table tbody td small {
+      color: #b3b3b3;
+      font-weight: 300; }
+  .custom-table tbody tr th, .custom-table tbody tr td {
+    position: relative;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease; }
+    .custom-table tbody tr th:before, .custom-table tbody tr th:after, .custom-table tbody tr td:before, .custom-table tbody tr td:after {
+      -webkit-transition: .3s all ease;
+      -o-transition: .3s all ease;
+      transition: .3s all ease;
+      content: "";
+      left: 0;
+      right: 0;
+      position: absolute;
+      height: 1px;
+      background: #2CD383;
+      width: 100%;
+      opacity: 0;
+      visibility: hidden; }
+    .custom-table tbody tr th:before, .custom-table tbody tr td:before {
+      top: -1px; }
+    .custom-table tbody tr th:after, .custom-table tbody tr td:after {
+      bottom: -1px; }
+  .custom-table tbody tr:hover th, .custom-table tbody tr:hover td {
+    background: rgba(0, 123, 255, 0.03); }
+    .custom-table tbody tr:hover th:before, .custom-table tbody tr:hover th:after, .custom-table tbody tr:hover td:before, .custom-table tbody tr:hover td:after {
+      opacity: 1;
+      visibility: visible; }
+  .custom-table tbody tr.active th, .custom-table tbody tr.active td {
+    background: rgba(0, 123, 255, 0.03); }
+    .custom-table tbody tr.active th:before, .custom-table tbody tr.active th:after, .custom-table tbody tr.active td:before, .custom-table tbody tr.active td:after {
+      opacity: 1;
+      visibility: visible; }
