@@ -42,6 +42,13 @@ def mainpage():
     return render_template('index.html', data=data)
 
 
+@app.route('/v2')
+def mainpage2():
+    mycursor.execute("SELECT * FROM mi.v_vacancy_priority_rank ORDER BY sum_rank DESC")
+    data = mycursor.fetchall()
+    return render_template('index2.html', data=data)
+
+
 @app.route('/api/<updtype>/<vacid>')
 def update(updtype, vacid):
     resp = updateVacancy(updtype, vacid)
