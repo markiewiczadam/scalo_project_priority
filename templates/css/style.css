@@ -32,11 +32,11 @@ img {max-width: 100%}
 .am-image {flex-basis: 10%}
 .am-text {font-size: 30px; padding-left: 10px; padding-top: 10px; color: #7F7F7F}  
 
-.up-button{background-image: url("up-button0.png"); height: 12px; width: 20px; border: none; transition-duration: 0.2s;}
-.up-button:hover{background-image: url("up-button1.png")}
+.up-button{background-image: url("up-button0.png"); height: 12px; width: 20px; border: none; transition-duration: 0.2s; background-repeat: no-repeat;}
+.up-button:hover{background-image: url("up-button1.png"); background-repeat: no-repeat;}
 
-.down-button{background-image: url("down-button0.png"); height: 12px; width: 20px; border: none; transition-duration: 0.2s;}
-.down-button:hover{background-image: url("down-button1.png")}
+.down-button{background-image: url("down-button0.png"); height: 12px; width: 20px; border: none; transition-duration: 0.2s; background-repeat: no-repeat;}
+.down-button:hover{background-image: url("down-button1.png"); background-repeat: no-repeat;}
 
 #myInput {
   background-image: url('/css/search-ico1.png');
