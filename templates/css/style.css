@@ -31,12 +31,13 @@ h2 {
 img {max-width: 100%}
 .am-image {flex-basis: 10%}
 .am-text {font-size: 30px; padding-left: 10px; padding-top: 10px; color: #7F7F7F}  
+.am-text-small {font-size: 16px; padding-left: 10px; padding-top: 16px; color: #7F7F7F}  
 
-.up-button{background-image: url("arrow-up0.png"); height: 12px; width: 20px; border: none; transition-duration: 0.2s; background-repeat: no-repeat;}
-.up-button:hover{background-image: url("arrow-up1.png"); background-repeat: no-repeat;}
+.up-button {background-image: url("arrow-up0.png"); height: 12px; width: 20px; border: none; transition-duration: 0.2s; background-repeat: no-repeat;}
+.up-button:hover {background-image: url("arrow-up1.png"); background-repeat: no-repeat;}
 
-.down-button{background-image: url("arrow-down0.png"); height: 12px; width: 20px; border: none; transition-duration: 0.2s; background-repeat: no-repeat;}
-.down-button:hover{background-image: url("arrow-down1.png"); background-repeat: no-repeat;}
+.down-button {background-image: url("arrow-down0.png"); height: 12px; width: 20px; border: none; transition-duration: 0.2s; background-repeat: no-repeat;}
+.down-button:hover {background-image: url("arrow-down1.png"); background-repeat: no-repeat;}
 
 #myInput {
   background-image: url('/css/search-ico1.png');
@@ -69,7 +70,8 @@ img {max-width: 100%}
     font-weight: 300; }
     .custom-table tbody th small, .custom-table tbody td small {
       color: #b3b3b3;
-      font-weight: 300; }
+      font-weight: 300;  
+	  }
   .custom-table tbody tr th, .custom-table tbody tr td {
     position: relative;
     -webkit-transition: .3s all ease;

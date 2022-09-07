@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="fonts/icomoon/style.css"> -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css"> 	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/style.css">	<!-- Style -->
+
+    <title>SCALO vacancy priority</title>
+	<link rel="icon" type="image/x-icon" href="css/favicon.png">
+  </head>
+  <body>
+  
+
+  <div class="content">
+    
+    <div class="container">
+		<div class="am-container">
+			<div class="am-image"> <img src="css/logo-scalo.jpg"> </div>
+			<div class="am-text"> | client attributes </div>
+			<div class="am-text-small"> &emsp; &emsp; &emsp; <a href="/#"> <b> &lt;-- back to vacancy priority </b></a> </div>
+		</div>
+		
+		
+
+      <div class="table-responsive">
+		<br>
+		
+		<div>
+			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for clients or vacancies..." title="Search for clients or vacancies">
+		</div>
+		
+        <table class="table custom-table" id="myTable">
+          <thead>
+            <tr>
+              <th scope="col">client name</th>
+              <th scope="col"><center>client type</center></th>
+              <th scope="col"><center>success probability</center></th>
+              <th scope="col"><center>recruitment process</center></th>
+              <th scope="col"><center>relations</center></th>		  
+            </tr>
+          </thead>
+          <tbody>	
+			{% for row in data %}
+            <tr>
+              <td><b>{{row[1]}}</b></td>
+              <td><center>
+					<select id="client_type" onchange="updateClient({{row[0]}}, this.id, this.value)">
+					  <option value="" selected disabled hidden>{{row[2]}}</option>
+					  <option value="normal">normal</option>
+					  <option value="longtail">longtail</option>
+					  <option value="prospect">prospect</option>
+					  <option value="replacement">replacement</option>
+					  <option value="exception">exception</option>  
+					  <option value="strategic">strategic</option>  
+					</select>
+			  </center></td>
+              <td><center>
+					<select id="client_probability" onchange="updateClient({{row[0]}}, this.id, this.value)">
+					  <option value="" selected disabled hidden>{{row[3]}}</option>
+					  <option value="exclusion">exclusion</option>
+					  <option value="low">low</option>
+					  <option value="mid">mid</option>
+					  <option value="high">high</option>
+					  <option value="presales/prospect">presales/prospect</option>  
+					</select>
+			  </center></td>
+              <td><center>
+					<select id="client_recruitment" onchange="updateClient({{row[0]}}, this.id, this.value)">
+					  <option value="" selected disabled hidden>{{row[4]}}</option>
+					  <option value="tech verification">tech verification</option>
+					  <option value="interview steps">interview steps</option>
+					  <option value="response time">response time</option>
+					  <option value="one tech meeting">one tech meeting</option>
+					</select>
+			  </center></td>
+              <td><center>
+					<select id="client_relations" onchange="updateClient({{row[0]}}, this.id, this.value)">
+					  <option value="" selected disabled hidden>{{row[5]}}</option>
+					  <option value="new client">new client</option>
+					  <option value="good relations">good relations</option>
+					  <option value="partnership relations">partnership relations</option> 
+					</select>
+			  </center></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+	
+	
+	<!-- Script for search function -->
+	<script>
+	function myFunction() {
+	  var input, filter, table, tr, td, i, txtValue;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("myTable");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[0];
+		if (td) {
+		  txtValue = td.textContent || td.innerText;
+		  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			tr[i].style.display = "";
+		  } else {
+			tr[i].style.display = "none";
+		  }
+		}       
+	  }
+	}
+	</script>
+	
+	
+	<!-- Script to update rows -->
+	<script>
+	function updateClient(ccid, fieldname, fieldvalue)
+		{
+		var protocol = window.location.protocol
+        var host = window.location.host
+
+		var getUrl = protocol + "//" + host + "/api/" + ccid + "/" + fieldname + "/" + fieldvalue
+
+		var xmlHttp = new XMLHttpRequest();
+		  xmlHttp.open( "GET", getUrl, false ); // false for synchronous request
+		  xmlHttp.send( null );
+		  return xmlHttp.responseText;
+		}
+	</script>
+	
+	
+  </body>
+</html>

@@ -31,9 +31,25 @@ def updateVacancy(updtype, vacid):
                     'Executed Query': qry})
 
 
+def updateClient(ccid, fieldname, fieldvalue):
+    qry = ''
+    if ccid.isnumeric():
+        if fieldname == 'client_type' or fieldname == 'client_probability' or fieldname == 'client_recruitment' or fieldname == 'client_relations':
+            qry = 'INSERT INTO mi.t_client_attributes (client_corporation_id, %s, mod_date) VALUES (%s, \'%s\', NOW()) ON CONFLICT (client_corporation_id) DO UPDATE SET %s = \'%s\', mod_date = NOW();' % (fieldname, ccid, fieldvalue, fieldname, fieldvalue)
+            mycursor.execute(qry)
+            conn.commit()
+
+    return jsonify({'Client Corp ID': ccid,
+                    'FieldName': fieldname,
+                    'FieldValue': fieldvalue,
+                    'Executed Query': qry})
+
+
 ###### Flask App Definition #######
 
 app = Flask(__name__, static_folder='templates/css')
+
+### Flask App Pages ###
 
 @app.route('/')
 def mainpage():
@@ -42,9 +58,24 @@ def mainpage():
     return render_template('index.html', data=data)
 
 
+@app.route('/clientatr')
+def clientatr():
+    mycursor.execute("SELECT * FROM mi.v_client_attributes")
+    data = mycursor.fetchall()
+    return render_template('clientatr.html', data=data)
+
+
+### Flask Api ###
+
 @app.route('/api/<updtype>/<vacid>')
-def update(updtype, vacid):
+def updateVacancyApi(updtype, vacid):
     resp = updateVacancy(updtype, vacid)
+    return resp
+
+
+@app.route('/api/<ccid>/<fieldname>/<fieldvalue>')
+def updateClientApi(ccid, fieldname, fieldvalue):
+    resp = updateClient(ccid, fieldname, fieldvalue)
     return resp
 
 
