@@ -1,81 +1,91 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <!-- <link rel="stylesheet" href="fonts/icomoon/style.css"> -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css"> 	<!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/style.css">	<!-- Style -->
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <title>SCALO vacancy priority</title>
-	<link rel="icon" type="image/x-icon" href="css/favicon.png">
-  </head>
-  <body>
+		<link rel="stylesheet" href="css/style.css">	<!-- Style -->
+
+		<title>SCALO Vacancy Priority</title>
+		<link rel="icon" type="image/x-icon" href="css/img/favicon.png">
+	</head>
   
+	<!-- -->
+  
+	<body>
 
-  <div class="content">
-    
-    <div class="container">
-		<div class="am-container">
-			<div class="am-image"> <img src="css/logo-scalo.jpg"> </div>
-			<div class="am-text"> | vacancy priority </div>
-			<div class="am-text-small"> &emsp; &emsp; &emsp; <a href="/clientatr"> <b>change client atrributes -> </b></a> </div>
+		<div class="content">
+
+			<div class="container-fluid">
+			
+				<div class="am-container">
+					<!-- <div class="am-image"> <img src="css/logo-scalo.jpg"> </div> -->
+					<div class="am-image"></div>
+					<div class="am-text"> | vacancy priority </div>
+					<div> <button class="am-button-descr"> </button> </div>
+					<div> <button class="am-button-rep"> </button> </div>
+					<div> <button class="am-button-attr"> </button> </div>
+				</div>
+				
+
+				<div class="table-responsive">
+
+					<div>
+						<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for clients or vacancies..." title="Search for clients or vacancies">
+					</div>
+				
+				
+					<table class="table custom-table" id="myTable">
+						<thead>
+							<tr>
+								<th scope="col" class="lbl">SCORE</th>
+								<th scope="col">Priority</th>
+								<th scope="col">Vacancy Name / Client Name</th>
+								<th scope="col">Job Role / Manager</th>
+								<th scope="col">Status</th>
+								<th scope="col">Age days</th>
+								<th scope="col">Attr. </th>
+								<th scope="col">Client Type</th>
+								<th scope="col">Client Prob.</th>
+								<th scope="col">Client Recr.</th>
+								<th scope="col">Client Rel.</th>
+								<th scope="col">Vacancies</th>
+								<th scope="col">Tech Stack</th>
+								<th scope="col">Margin</th>
+								<th scope="col">Exception</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for row in data %}
+							<tr>
+								<td>{{row[0]}}</td>
+								<td>{{row[1]}}</td>
+								<td>{{row[2]}}<small class="d-block">{{row[3]}}</small> </td>
+								<td>{{row[4]}}<small class="d-block">{{row[5]}}</small> </td>
+								<td>{{row[6]}}</td>
+								<td class="lbl">{{row[7]}} <span>openings: {{row[8]}} <br> shortlist: {{row[9]}} <br> cvsent: {{row[10]}} <br> interviews: {{row[11]}} <br> placements: {{row[12]}}</span> </td>
+								<td class="lbl">{{row[13]}} <span>HC: {{row[14]}} <br> IN: {{row[15]}} <br> OUT: {{row[16]}}</span> </td>
+								<td>{{row[17]}}<small class="d-block">{{row[18]}}</small> </td>
+								<td>{{row[19]}}<small class="d-block">{{row[20]}}</small> </td>
+								<td>{{row[21]}}<small class="d-block">{{row[22]}}</small> </td>
+								<td>{{row[23]}}<small class="d-block">{{row[24]}}</small> </td>
+								<td>{{row[25]}}<small class="d-block">{{row[26]}}</small> </td>
+								<td>{{row[27]}}<small class="d-block">{{row[28]}}</small> </td>
+								<td class="lbl">{{row[29]}} <small class="d-block">{{row[30]}}</small> <span>bill rate: {{row[31]}} <br> pay rate: {{row[32]}} <br> m perc: {{row[33]}} <br> comm: {{row[34]}}</span> </td>
+								<td class="lbl">{{row[35]}} <small class="d-block">{{row[36]}}</small> <span>exc comm: {{row[37]}}</span> </td>									
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+
 		</div>
 		
 		
-
-      <div class="table-responsive">
-		<br>
-		
-		<div>
-			<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for clients or vacancies..." title="Search for clients or vacancies">
-		</div>
-		
-        <table class="table custom-table" id="myTable">
-          <thead>
-            <tr>
-              <th scope="col">vacancy title</th>
-              <th scope="col"><center>cli vac</center></th>
-              <th scope="col"><center>cli vac rank</center></th>
-              <th scope="col"><center>tech area</center></th>
-              <th scope="col"><center>tech area rank</center></th>
-              <th scope="col">seniority</th>
-              <th scope="col"><center>seniority rank</center></th>
-              <th scope="col"><center>additional rank</center></th>
-              <th scope="col"><center>summary</center></th>
-			  <th scope="col"><center></center></th>			  
-            </tr>
-          </thead>
-          <tbody>	
-			{% for row in data %}
-            <tr>
-              <td><b>{{row[0]}}</b> <small class="d-block">{{row[1]}}</small> </td>
-              <td><center>{{row[2]}}</center></td>
-              <td><center>{{row[3]}}</center></td>
-              <td><center>{{row[4]}}</center></td>
-              <td><center>{{row[5]}}</center></td>
-              <td>{{row[6]}}</td>
-              <td><center>{{row[7]}}</center></td>
-              <td><center>{{row[8]}}</center></td>
-              <td><b><center>{{row[9]}}</center></b></td>
-			  <td><center> 
-							<button class="up-button" onclick="callApi('up', {{row[10]}}); window.location.reload()"></button>
-							<br>
-							<button class="down-button" onclick="callApi('down', {{row[10]}}); window.location.reload()"></button>
-					</center></td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-	
-	
 	<!-- Script for search function -->
 	<script>
 	function myFunction() {
@@ -85,7 +95,7 @@
 	  table = document.getElementById("myTable");
 	  tr = table.getElementsByTagName("tr");
 	  for (i = 0; i < tr.length; i++) {
-		td = tr[i].getElementsByTagName("td")[0];
+		td = tr[i].getElementsByTagName("td")[2];
 		if (td) {
 		  txtValue = td.textContent || td.innerText;
 		  if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -98,23 +108,6 @@
 	}
 	</script>
 	
-	
-	<!-- Script to update rows -->
-	<script>
-	function callApi(updtype, vacid)
-		{
-		var protocol = window.location.protocol
-        var host = window.location.host
 
-		var getUrl = protocol + "//" + host + "/api/" + updtype + "/" + vacid
-
-		var xmlHttp = new XMLHttpRequest();
-		  xmlHttp.open( "GET", getUrl, false ); // false for synchronous request
-		  xmlHttp.send( null );
-		  return xmlHttp.responseText;
-		}
-	</script>
-	
-	
-  </body>
+	</body>
 </html>

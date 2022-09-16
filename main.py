@@ -53,7 +53,7 @@ app = Flask(__name__, static_folder='templates/css')
 
 @app.route('/')
 def mainpage():
-    mycursor.execute("SELECT * FROM mi.v_vacancy_priority_rank ORDER BY sum_rank DESC")
+    mycursor.execute("SELECT * FROM mi.v_vacancy_priority_v2")
     data = mycursor.fetchall()
     return render_template('index.html', data=data)
 
