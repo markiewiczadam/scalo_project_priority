@@ -1,5 +1,5 @@
 from _config import *
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import psycopg2
 
 
@@ -51,8 +51,12 @@ app = Flask(__name__, static_folder='templates/css')
 
 ### Flask App Pages ###
 
+
 @app.route('/')
 def mainpage():
+    usr = request.headers.get('X-MS-CLIENT-PRINCIPAL-NAME')
+    print(usr)
+
     mycursor.execute("SELECT * FROM mi.v_vacancy_priority_v2")
     data = mycursor.fetchall()
     return render_template('index.html', data=data)
