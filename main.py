@@ -2,14 +2,12 @@ from _config import *
 from flask import Flask, render_template, jsonify, request
 import psycopg2
 
-adminUserList = ('adam.markiewicz@scalosoft.com')
+adminUserList = ('bartek.wruszczak@scalosoft.com')
 
 try:
     conn = psycopg2.connect(host=db_host, port=db_port, user=db_user, password=db_pass, database=db_dbname)
     mycursor = conn.cursor()
-    print("connected")
 except:
-    print ("I am unable to connect to the database")
     exit()
 
 
