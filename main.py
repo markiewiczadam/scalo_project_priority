@@ -2,6 +2,7 @@ from _config import *
 from flask import Flask, render_template, jsonify, request
 import psycopg2
 
+adminUserList = ('adam.markiewicz@scalosoft.com')
 
 try:
     conn = psycopg2.connect(host=db_host, port=db_port, user=db_user, password=db_pass, database=db_dbname)
@@ -54,12 +55,15 @@ app = Flask(__name__, static_folder='templates/css')
 
 @app.route('/')
 def mainpage():
-    usr = request.headers.get('X-MS-CLIENT-PRINCIPAL-NAME')
-    print(usr)
+    usrname = request.headers.get('X-MS-CLIENT-PRINCIPAL-NAME')
+    if usrname in adminUserList:
+        usrlvl = 'Admin'
+    else:
+        usrlvl ='ReadOnly'
 
     mycursor.execute("SELECT * FROM mi.v_vacancy_priority_v2")
     data = mycursor.fetchall()
-    return render_template('index.html', data=data)
+    return render_template('index.html', data=data, usrlvl=usrlvl, usrname=usrname)
 
 
 @app.route('/clientatr')
