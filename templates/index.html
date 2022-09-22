@@ -27,55 +27,66 @@
 			
 					<div> <button class="am-button-descr"> </button> </div>
 					<div> <button class="am-button-rep"> </button> </div>
+					
+					{% if usrlvl == "admin" %}
 					<div> <button class="am-button-attr"> </button> </div>
+					{% endif %}
+					
+					<div class="am-usrname"> <b>logged as:</b> {{usrname}} <small class="d-block"> <b>user level:</b> {{usrlvl}}</small> </div>
 				</div>
 				
 
 				<div class="table-responsive">
 
 					<div>
-						<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for clients or vacancies..." title="Search for clients or vacancies">
+						<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for clients or vacancies or job role or manager..." title="Search for clients or vacancies">
 					</div>
 				
 				
 					<table class="table custom-table" id="myTable">
 						<thead>
 							<tr>
-								<th scope="col" class="lbl">SCORE</th>
-								<th scope="col">Priority</th>
-								<th scope="col">Vacancy Name / Client Name</th>
-								<th scope="col">Job Role / Manager</th>
-								<th scope="col">Status</th>
-								<th scope="col">Age days</th>
-								<th scope="col">Attr. </th>
-								<th scope="col">Client Type</th>
-								<th scope="col">Client Prob.</th>
-								<th scope="col">Client Recr.</th>
-								<th scope="col">Client Rel.</th>
-								<th scope="col">Vacancies</th>
-								<th scope="col">Tech Stack</th>
-								<th scope="col">Margin</th>
-								<th scope="col">Exception</th>
+								<th class="th-pri col-score" colspan="2">SCORE</th>
+								<th class="th-pri" colspan="5">Vacancy Details</th>
+								<th class="th-pri col-score" colspan="7">Scoreboard</th>
+								<th class="th-pri" colspan="1">Exceptions</th>
+							</tr>
+							<tr>
+								<th class="col-center col-score">SCORE</th>
+								<th class="col-center col-score">Priority</th>
+								<th>Vacancy Name / Client Name</th>
+								<th>Job Role / Manager</th>
+								<th>Status</th>
+								<th class="th-lbl col-center">Age days <font color="red"><b>!</b></font> <span>put cursor on label for details</span> </th>
+								<th class="th-lbl col-center">Attr. <font color="red"><b>!</b></font> <span>put cursor on label for details</span> </th>
+								<th class="col-center col-score">Client Type</th>
+								<th class="col-center col-score">Client Prob.</th>
+								<th class="col-center col-score">Client Recr.</th>
+								<th class="col-center col-score">Client Rel.</th>
+								<th class="col-center col-score">Vacancies</th>
+								<th class="col-center col-score">Tech Stack</th>
+								<th class="th-lbl col-center col-score">Margin <font color="red"><b>!</b></font> <span>put cursor on label for details</span> </th>
+								<th class="th-lbl">Exception <font color="red"><b>!</b></font> <span>put cursor on label for details</span> </th>
 							</tr>
 						</thead>
 						<tbody>
 							{% for row in data %}
 							<tr>
-								<td>{{row[0]}}</td>
-								<td>{{row[1]}}</td>
+								<td class="col-center col-score">{{row[0]}}</td>
+								<td class="col-center col-score">{{row[1]}}</td>
 								<td>{{row[2]}}<small class="d-block">{{row[3]}}</small> </td>
 								<td>{{row[4]}}<small class="d-block">{{row[5]}}</small> </td>
 								<td>{{row[6]}}</td>
-								<td class="lbl">{{row[7]}} <span>openings: {{row[8]}} <br> shortlist: {{row[9]}} <br> cvsent: {{row[10]}} <br> interviews: {{row[11]}} <br> placements: {{row[12]}}</span> </td>
-								<td class="lbl">{{row[13]}} <span>HC: {{row[14]}} <br> IN: {{row[15]}} <br> OUT: {{row[16]}}</span> </td>
-								<td>{{row[17]}}<small class="d-block">{{row[18]}}</small> </td>
-								<td>{{row[19]}}<small class="d-block">{{row[20]}}</small> </td>
-								<td>{{row[21]}}<small class="d-block">{{row[22]}}</small> </td>
-								<td>{{row[23]}}<small class="d-block">{{row[24]}}</small> </td>
-								<td>{{row[25]}}<small class="d-block">{{row[26]}}</small> </td>
-								<td>{{row[27]}}<small class="d-block">{{row[28]}}</small> </td>
-								<td class="lbl">{{row[29]}} <small class="d-block">{{row[30]}}</small> <span>bill rate: {{row[31]}} <br> pay rate: {{row[32]}} <br> m perc: {{row[33]}} <br> comm: {{row[34]}}</span> </td>
-								<td class="lbl">{{row[35]}} <small class="d-block">{{row[36]}}</small> <span>exc comm: {{row[37]}}</span> </td>									
+								<td class="td-lbl col-center">{{row[7]}} <span>openings: {{row[8]}} <br> shortlist: {{row[9]}} <br> cvsent: {{row[10]}} <br> interviews: {{row[11]}} <br> placements: {{row[12]}}</span> </td>
+								<td class="td-lbl col-center">{{row[13]}} <span>HC: {{row[14]}} <br> IN: {{row[15]}} <br> OUT: {{row[16]}}</span> </td>
+								<td class="col-center col-score">{{row[18]}}<small class="d-block">{{row[17]}}</small> </td>
+								<td class="col-center col-score">{{row[20]}}<small class="d-block">{{row[19]}}</small> </td>
+								<td class="col-center col-score">{{row[22]}}<small class="d-block">{{row[21]}}</small> </td>
+								<td class="col-center col-score">{{row[24]}}<small class="d-block">{{row[23]}}</small> </td>
+								<td class="col-center col-score">{{row[26]}}<small class="d-block">{{row[25]}}</small> </td>
+								<td class="col-center col-score">{{row[28]}}<small class="d-block">{{row[27]}}</small> </td>
+								<td class="td-lbl col-center col-score">{{row[30]}} <small class="d-block">{{row[29]}}</small> <span>bill rate: {{row[31]}} <br> pay rate: {{row[32]}} <br> m perc: {{row[33]}} <br> comm: {{row[34]}}</span> </td>
+								<td class="td-lbl">{{row[36]}} <small class="d-block">{{row[35]}}</small> <span>exc comm: {{row[37]}}</span> </td>									
 							</tr>
 							{% endfor %}
 						</tbody>
@@ -97,8 +108,9 @@
 	  tr = table.getElementsByTagName("tr");
 	  for (i = 0; i < tr.length; i++) {
 		td = tr[i].getElementsByTagName("td")[2];
-		if (td) {
-		  txtValue = td.textContent || td.innerText;
+		td1 = tr[i].getElementsByTagName("td")[3];
+		if (td || td1) {
+		  txtValue = (td.textContent || td.innerText) + (td1.textContent || td1.innerText);
 		  if (txtValue.toUpperCase().indexOf(filter) > -1) {
 			tr[i].style.display = "";
 		  } else {
@@ -112,3 +124,26 @@
 
 	</body>
 </html>
+
+<!-- 
+	<script>
+	function myFunction() {
+	  var input, filter, table, tr, td, i, txtValue;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("myTable");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[2]);
+		if (td) {
+		  txtValue = td.textContent || td.innerText;
+		  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			tr[i].style.display = "";
+		  } else {
+			tr[i].style.display = "none";
+		  }
+		}       
+	  }
+	}
+	</script>
+-->

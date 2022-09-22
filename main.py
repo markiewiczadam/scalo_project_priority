@@ -7,12 +7,6 @@ import psycopg2
 
 adminUserList = ('bartek.wruszczak@scalosoft.com')
 
-usrname = request.headers.get('X-MS-CLIENT-PRINCIPAL-NAME')
-if usrname in adminUserList:
-    usrlvl = 'admin'
-else:
-    usrlvl = 'read only'
-
 
 ###### Define DB Connection #######
 
@@ -31,7 +25,13 @@ app = Flask(__name__, static_folder='templates/css')
 ### Define App Pages ###
 
 @app.route('/')
-def mainpage(usrname, usrlvl):
+def mainpage():
+    usrname = request.headers.get('X-MS-CLIENT-PRINCIPAL-NAME')
+    if usrname != None and usrname in adminUserList:
+        usrlvl = 'admin'
+    else:
+        usrlvl = 'read only'
+
     mycursor.execute("SELECT * FROM mi.v_vacancy_priority_v2")
     data = mycursor.fetchall()
     return render_template('index.html', data=data, usrlvl=usrlvl, usrname=usrname)
