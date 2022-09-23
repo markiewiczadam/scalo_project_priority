@@ -5,7 +5,7 @@ import psycopg2
 
 ###### Define Admin User List #######
 
-adminUserList = ('bartek.wruszczak@scalosoft.com', 'adam.markiewicz@scalosoft.com')
+adminUserList = ('adam.markiewicz@scalosoft.com')
 
 
 ###### Define DB Connection #######
