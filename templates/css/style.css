@@ -130,10 +130,10 @@ body {
 	margin-top: 2px; }	
 	
 .page-details { 
-	font-size: 12px; 
+	font-size: 11px; 
 	font-weight: 100;
 	color: #7F7F7F;	
-	padding-left: 100px;
+	padding-left: 50vw;
 	margin-top: 5px; }	
 	
 
@@ -199,7 +199,7 @@ body {
 .ctrl {
 	width: 40px;
 	height: 40px;
-	margin-left: 100px;
+	margin-left: 50px;
 	margin-top: 10px;
 	background: url("/css/img/settings.svg") center no-repeat; }
 	
@@ -209,7 +209,7 @@ body {
 .ctrl-na {	
 	width: 40px;
 	height: 40px;
-	margin-left: 100px;
+	margin-left: 50px;
 	margin-top: 10px;
 	background: url("/css/img/settings.svg") center no-repeat; 
 	filter: invert(82%) sepia(6%) saturate(0%) hue-rotate(316deg) brightness(89%) contrast(80%); }
@@ -217,7 +217,7 @@ body {
 .rprt {
 	width: 35px;
 	height: 35px;
-	margin-left: 100px;
+	margin-left: 50px;
 	margin-top: 10px;
 	background: url("/css/img/report.svg") center no-repeat; }
 
@@ -228,7 +228,7 @@ body {
 .rtrn {
 	width: 35px;
 	height: 35px;
-	margin-left: 100px;
+	margin-left: 50px;
 	margin-top: 10px;
 	background: url("/css/img/return2.svg") center no-repeat; }
 
@@ -251,6 +251,14 @@ body {
     margin: 0 5px 5px 0;
 	cursor:pointer;
   }
+  
+.flat-input {
+	width: 150px;
+	padding: 5px 5px 2px 5px;
+	margin: 0 5px 5px 0;
+	border: 1px solid #e0e0e0;
+	font-style: italic;
+	font-size: 11px; }
 
 
 	

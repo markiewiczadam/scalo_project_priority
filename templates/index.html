@@ -18,6 +18,11 @@
 				<div class="logo-container">
 					<div class="page-logo"></div>
 					<div class="page-name">| vacancy priority</div>
+
+					<div class="page-details"><b>logged as: </b>{{usrname}} <i>({{usrlvl}})</i></div>
+					
+					<a href="/rankdetails" title="Show rank details (not working)..."> <img class="rprt"/></img> </a>
+					<a href="/reports" title="Show reports (not working)..."> <img class="rprt"/></img> </a>
 					
 					{% if usrlvl == "admin" %}
 						<a href="/clientattr" title="Change client attributes..."> <img class="ctrl"/></img> </a>
@@ -25,8 +30,6 @@
 						<a title="Change client attributes..."> <img class="ctrl-na"/></img> </a>
 					{% endif %}
 					
-					<a href="/rankdetails" title="Show rank details (not working)..."> <img class="rprt"/></img> </a>
-					<div class="page-details">logged as: {{usrname}} <i>({{usrlvl}})</i></div>
 				</div>
 				
 				<div>
@@ -38,8 +41,8 @@
 						<tr>
 							<th class="th-pri col-cent" colspan="2">SCORE</th>
 							<th class="th-pri col-cent" colspan="5">Vacancy Details</th>
-							<th class="th-pri col-cent col-score" colspan="7">Scoreboard</th>
-							<th class="th-pri col-cent col-score" colspan="1">Exceptions</th>
+							<th class="th-pri col-cent col-score" colspan="8">Scoreboard</th>
+							<th class="th-pri col-cent" colspan="2">Exceptions</th>
 						</tr>
 						<tr>
 							<th class="col-cent">SCORE</th>
@@ -56,7 +59,9 @@
 							<th class="col-cent col-score">Vacancies</th>
 							<th class="col-cent col-score">Tech Stack</th>
 							<th class="col-cent th-lbl col-score">Margin  &#128161; <span>put cursor on label for details</span> </th>
-							<th class="col-left th-lbl col-score">Exception  &#128161; <span>put cursor on label for details</span> </th>
+							<th class="col-left th-lbl col-score">Exception</span> </th>
+							<th class="col-cent th-lbl">Level</span> </th>
+							<th class="col-left th-lbl">Descrption</span> </th>
 						</tr>
 					</thead>
 					<tbody>
@@ -105,16 +110,16 @@
 							<td class="col-cent">{{var_score}}</td>
 							
 							{% if usrlvl == "admin" %}
-								<td>
-									<select class="flat-select" id="vac_priority" onchange="updateClient({{row[0]}}, this.id, this.value)">
-										<option value="" selected disabled hidden>{{var_priority}}</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-								</td>
+							<td>
+								<select class="flat-select" id="vac_priority" onchange="">
+									<option value="" selected disabled hidden>{{var_priority}}</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								</select>
+							</td>
 							{% else %}
-								<td class="col-cent">{{var_priority}}</td>
+							<td class="col-cent">{{var_priority}}</td>
 							{% endif %}							
 							
 							<td class="col-left">{{var_vacancy}} <small class="d-block">{{var_client}} <i>({{var_manager}})</i></small> </td>
@@ -122,6 +127,7 @@
 							<td class="col-left">{{var_status}}</td>
 							<td class="col-cent td-lbl">{{var_age}} <span>openings: {{var_opens}} <br> shortlist: {{var_short}} <br> cvsent: {{var_cvsent}} <br> interviews: {{var_inter}} <br> placements: {{var_place}}</span> </td>
 							<td class="col-cent td-lbl">{{var_attr}} <span>HC: {{var_hc}} <br> IN: {{var_in}} <br> OUT: {{var_out}}</span> </td>
+							
 							<td class="col-cent col-score">{{var_type}} <small class="d-block">{{var_type_v}}</small> </td>
 							<td class="col-cent col-score">{{var_prob}} <small class="d-block">{{var_prob_v}}</small> </td>
 							<td class="col-cent col-score">{{var_recr}} <small class="d-block">{{var_recr_v}}</small> </td>
@@ -129,7 +135,27 @@
 							<td class="col-cent col-score">{{var_vac}} <small class="d-block">{{var_vac_v}}</small> </td>
 							<td class="col-cent col-score">{{var_stack}} <small class="d-block">{{var_stack_v}}</small> </td>
 							<td class="col-cent td-lbl col-score">{{var_marigin}} <small class="d-block">{{var_marigin_v}}</small> <span>bill rate: {{var_bill}} <br> pay rate: {{var_pay}} <br> m perc: {{var_perc}} <br> comm: {{var_comm1}}</span> </td>
-							<td class="col-left td-lbl col-score">{{var_except}} <small class="d-block">{{var_except_v}}</small> <span>exc comm: {{var_comm2}}</span> </td>
+							<td class="col-cent td-lbl col-score">{{var_except}} <small class="d-block">{{var_except_v}}</small> <span>exc comm: {{var_comm2}}</span> </td>
+							
+							
+							{% if usrlvl == "admin" %}
+							<td class="col-cent">
+								<select class="flat-select" id="ex_level" onchange="">
+									<option value="" selected disabled hidden>#0</option>
+									<option value="1">#1</option>
+									<option value="2">#2</option>
+									<option value="3">#3</option>
+								</select>
+							</td>
+							
+							<td class="col-cent"> <input class="flat-input" type="text" id="exdescr" placeholder="Exception description"> </td>
+							
+							{% else %}
+							<td class="col-cent">#1</td>
+							<td class="col-left">Exception description...</td>
+							{% endif %}
+							
+							
 							{% endfor %}
 						</tr>
 					</tbody>
