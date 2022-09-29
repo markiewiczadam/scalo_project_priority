@@ -1,101 +1,131 @@
 <!doctype html>
 <html lang="en">
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-		<link rel="stylesheet" href="css/style.css">	<!-- Style -->
+		<link rel="stylesheet" href="css/style.css">
 
-		<title>SCALO Vacancy Priority</title>
+		<title>SCALO Vacancy Priority v2</title>
 		<link rel="icon" type="image/x-icon" href="css/img/favicon.png">
 	</head>
-  
-	<!-- -->
-  
-	<body>
 
+
+	<body> 
 		<div class="content">
-
-			<div class="container-fluid">
-			
-				<div class="am-container">
-					<!-- <div class="am-image"> <img src="css/logo-scalo.jpg"> </div> -->
-					<div class="am-image"></div>
-					<div class="am-text"> | vacancy priority</div>		<!--  -> logged as: {{usrname}} (level: {{usrlvl}})  -->
-			
-					<!-- <div> <button class="am-button-descr"> </button> </div>	-->
-					<!-- <div> <button class="am-button-rep"> </button> </div>		-->
+			<div class="container">
+				<div class="logo-container">
+					<div class="page-logo"></div>
+					<div class="page-name">| vacancy priority</div>
 					
 					{% if usrlvl == "admin" %}
-					<div> <button class="am-button-attr" onclick="/clientatr"> </button> </div>
+						<a href="/clientattr" title="Change client attributes..."> <img class="ctrl"/></img> </a>
+					{% else %}
+						<a title="Change client attributes..."> <img class="ctrl-na"/></img> </a>
 					{% endif %}
 					
-					<div class="am-usrname"> <b>logged as:</b> {{usrname}} <small class="d-block"> <b>user level:</b> {{usrlvl}}</small> </div>
+					<a href="/rankdetails" title="Show rank details (not working)..."> <img class="rprt"/></img> </a>
+					<div class="page-details">logged as: {{usrname}} <i>({{usrlvl}})</i></div>
 				</div>
 				
+				<div>
+					<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for clients or vacancies or job role or manager..." title="Search for clients or vacancies">
+				</div>
 
-				<div class="table-responsive">
-
-					<div>
-						<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for clients or vacancies or job role or manager..." title="Search for clients or vacancies">
-					</div>
-				
-				
-					<table class="table custom-table" id="myTable">
-						<thead>
-							<tr>
-								<th class="th-pri col-score" colspan="2">SCORE</th>
-								<th class="th-pri" colspan="5">Vacancy Details</th>
-								<th class="th-pri col-score" colspan="7">Scoreboard</th>
-								<th class="th-pri" colspan="1">Exceptions</th>
-							</tr>
-							<tr>
-								<th class="col-center col-score">SCORE</th>
-								<th class="col-center col-score">Priority</th>
-								<th>Vacancy Name / Client Name</th>
-								<th>Job Role / Manager</th>
-								<th>Status</th>
-								<th class="th-lbl col-center">Age days <font color="red"><b>!</b></font> <span>put cursor on label for details</span> </th>
-								<th class="th-lbl col-center">Attr. <font color="red"><b>!</b></font> <span>put cursor on label for details</span> </th>
-								<th class="col-center col-score">Client Type</th>
-								<th class="col-center col-score">Client Prob.</th>
-								<th class="col-center col-score">Client Recr.</th>
-								<th class="col-center col-score">Client Rel.</th>
-								<th class="col-center col-score">Vacancies</th>
-								<th class="col-center col-score">Tech Stack</th>
-								<th class="th-lbl col-center col-score">Margin <font color="red"><b>!</b></font> <span>put cursor on label for details</span> </th>
-								<th class="th-lbl">Exception <font color="red"><b>!</b></font> <span>put cursor on label for details</span> </th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for row in data %}
-							<tr>
-								<td class="col-center col-score">{{row[0]}}</td>
-								<td class="col-center col-score">{{row[1]}}</td>
-								<td>{{row[2]}}<small class="d-block">{{row[3]}}</small> </td>
-								<td>{{row[4]}}<small class="d-block">{{row[5]}}</small> </td>
-								<td>{{row[6]}}</td>
-								<td class="td-lbl col-center">{{row[7]}} <span>openings: {{row[8]}} <br> shortlist: {{row[9]}} <br> cvsent: {{row[10]}} <br> interviews: {{row[11]}} <br> placements: {{row[12]}}</span> </td>
-								<td class="td-lbl col-center">{{row[13]}} <span>HC: {{row[14]}} <br> IN: {{row[15]}} <br> OUT: {{row[16]}}</span> </td>
-								<td class="col-center col-score">{{row[18]}}<small class="d-block">{{row[17]}}</small> </td>
-								<td class="col-center col-score">{{row[20]}}<small class="d-block">{{row[19]}}</small> </td>
-								<td class="col-center col-score">{{row[22]}}<small class="d-block">{{row[21]}}</small> </td>
-								<td class="col-center col-score">{{row[24]}}<small class="d-block">{{row[23]}}</small> </td>
-								<td class="col-center col-score">{{row[26]}}<small class="d-block">{{row[25]}}</small> </td>
-								<td class="col-center col-score">{{row[28]}}<small class="d-block">{{row[27]}}</small> </td>
-								<td class="td-lbl col-center col-score">{{row[30]}} <small class="d-block">{{row[29]}}</small> <span>bill rate: {{row[31]}} <br> pay rate: {{row[32]}} <br> m perc: {{row[33]}} <br> comm: {{row[34]}}</span> </td>
-								<td class="td-lbl">{{row[36]}} <small class="d-block">{{row[35]}}</small> <span>exc comm: {{row[37]}}</span> </td>									
-							</tr>
+				<table class="table custom-table"  id="myTable">
+					<thead>
+						<tr>
+							<th class="th-pri col-cent" colspan="2">SCORE</th>
+							<th class="th-pri col-cent" colspan="5">Vacancy Details</th>
+							<th class="th-pri col-cent col-score" colspan="7">Scoreboard</th>
+							<th class="th-pri col-cent col-score" colspan="1">Exceptions</th>
+						</tr>
+						<tr>
+							<th class="col-cent">SCORE</th>
+							<th class="col-cent">Priority</th>
+							<th class="col-left">Vacancy Name / Client Name {Manager)</th>
+							<th class="col-left">Tech Stack / Job Role</th>
+							<th class="col-left">Status</th>
+							<th class="col-cent th-lbl">Age (d.)  &#128161; <span>put cursor on label for details</span> </th>
+							<th class="col-cent th-lbl">Attr.  &#128161; <span>put cursor on label for details</span> </th>
+							<th class="col-cent col-score">Client Type</th>
+							<th class="col-cent col-score">Client Prob.</th>
+							<th class="col-cent col-score">Client Recr.</th>
+							<th class="col-cent col-score">Client Rel.</th>
+							<th class="col-cent col-score">Vacancies</th>
+							<th class="col-cent col-score">Tech Stack</th>
+							<th class="col-cent th-lbl col-score">Margin  &#128161; <span>put cursor on label for details</span> </th>
+							<th class="col-left th-lbl col-score">Exception  &#128161; <span>put cursor on label for details</span> </th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- variable declaration -->
+						{% for row in data %}
+							{% set var_score = row[0] %}
+							{% set var_priority = row[1] %}
+							{% set var_vacancy = row[2] %}
+							{% set var_client = row[3] %}
+							{% set var_jobrole = row[4] %}
+							{% set var_manager = row[5] %}
+							{% set var_status = row[6] %}
+							{% set var_age = row[7] %}
+								{% set var_opens = row[8] %}
+								{% set var_short = row[9] %}
+								{% set var_cvsent = row[10] %}
+								{% set var_inter = row[11] %}
+								{% set var_place = row[12] %}
+							{% set var_attr = row[13] %}
+								{% set var_hc = row[14] %}
+								{% set var_in = row[15] %}
+								{% set var_out = row[16] %}
+							{% set var_type = row[18] %}
+								{% set var_type_v = row[17] %}
+							{% set var_prob = row[20] %}
+								{% set var_prob_v = row[19] %}
+							{% set var_recr = row[22] %}
+								{% set var_recr_v = row[21] %}	
+							{% set var_rel = row[24] %}
+								{% set var_rel_v = row[23] %}	
+							{% set var_vac = row[26] %}
+								{% set var_vac_v = row[25] %}
+							{% set var_stack = row[28] %}
+								{% set var_stack_v = row[27] %}
+							{% set var_marigin = row[30] %}
+								{% set var_marigin_v = row[29] %}
+								{% set var_bill = row[31] %}
+								{% set var_pay = row[32] %}
+								{% set var_perc = row[33] %}
+								{% set var_comm1 = row[34] %}
+							{% set var_except = row[36] %}
+								{% set var_except_v = row[35] %}
+								{% set var_comm2 = row[37] %}
+							
+						<tr>
+							<td class="col-cent">{{var_score}}</td>
+							<td class="col-cent">{{var_priority}}</td>
+							<td class="col-left">{{var_vacancy}} <small class="d-block">{{var_client}} <i>({{var_manager}})</i></small> </td>
+							<td class="col-left">{{var_stack}} <small class="d-block">{{var_jobrole}}</small> </td>
+							<td class="col-left">{{var_status}}</td>
+							<td class="col-cent td-lbl">{{var_age}} <span>openings: {{var_opens}} <br> shortlist: {{var_short}} <br> cvsent: {{var_cvsent}} <br> interviews: {{var_inter}} <br> placements: {{var_place}}</span> </td>
+							<td class="col-cent td-lbl">{{var_attr}} <span>HC: {{var_hc}} <br> IN: {{var_in}} <br> OUT: {{var_out}}</span> </td>
+							<td class="col-cent col-score">{{var_type}} <small class="d-block">{{var_type_v}}</small> </td>
+							<td class="col-cent col-score">{{var_prob}} <small class="d-block">{{var_prob_v}}</small> </td>
+							<td class="col-cent col-score">{{var_recr}} <small class="d-block">{{var_recr_v}}</small> </td>
+							<td class="col-cent col-score">{{var_rel}} <small class="d-block">{{var_rel_v}}</small> </td>
+							<td class="col-cent col-score">{{var_vac}} <small class="d-block">{{var_vac_v}}</small> </td>
+							<td class="col-cent col-score">{{var_stack}} <small class="d-block">{{var_stack_v}}</small> </td>
+							<td class="col-cent td-lbl col-score">{{var_marigin}} <small class="d-block">{{var_marigin_v}}</small> <span>bill rate: {{var_bill}} <br> pay rate: {{var_pay}} <br> m perc: {{var_perc}} <br> comm: {{var_comm1}}</span> </td>
+							<td class="col-left td-lbl col-score">{{var_except}} <small class="d-block">{{var_except_v}}</small> <span>exc comm: {{var_comm2}}</span> </td>
 							{% endfor %}
-						</tbody>
-					</table>
-				</div>
-				
+						</tr>
+					</tbody>
+				</table>
 			</div>
-
 		</div>
+		
+		
+		
 		
 		
 	<!-- Script for search function -->
@@ -121,29 +151,6 @@
 	}
 	</script>
 	
-
+	
 	</body>
 </html>
-
-<!-- 
-	<script>
-	function myFunction() {
-	  var input, filter, table, tr, td, i, txtValue;
-	  input = document.getElementById("myInput");
-	  filter = input.value.toUpperCase();
-	  table = document.getElementById("myTable");
-	  tr = table.getElementsByTagName("tr");
-	  for (i = 0; i < tr.length; i++) {
-		td = tr[i].getElementsByTagName("td")[2]);
-		if (td) {
-		  txtValue = td.textContent || td.innerText;
-		  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-			tr[i].style.display = "";
-		  } else {
-			tr[i].style.display = "none";
-		  }
-		}       
-	  }
-	}
-	</script>
--->

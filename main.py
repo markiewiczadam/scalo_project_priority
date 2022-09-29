@@ -37,11 +37,11 @@ def mainpage():
     return render_template('index.html', data=data, usrlvl=usrlvl, usrname=usrname)
 
 
-@app.route('/clientatr')
+@app.route('/clientattr')
 def clientatr():
-    mycursor.execute("SELECT * FROM mi.v_client_attributes")
+    mycursor.execute("SELECT * FROM mi.v_vacancy_priority_v2")
     data = mycursor.fetchall()
-    return render_template('clientatr.html', data=data)
+    return render_template('clientattr.html', data=data)
 
 
 
