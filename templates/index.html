@@ -105,12 +105,14 @@
 							<td class="col-cent">{{var_score}}</td>
 							
 							{% if usrlvl == "admin" %}
-								<select class="flat-select" id="vac_priority" onchange="updateClient({{row[0]}}, this.id, this.value)">
-									<option value="" selected disabled hidden>{{var_priority}}</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-								</select>
+								<td>
+									<select class="flat-select" id="vac_priority" onchange="updateClient({{row[0]}}, this.id, this.value)">
+										<option value="" selected disabled hidden>{{var_priority}}</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select>
+								</td>
 							{% else %}
 								<td class="col-cent">{{var_priority}}</td>
 							{% endif %}							
