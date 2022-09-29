@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+		<link rel="stylesheet" href="css/style.css">
+
+		<title>SCALO Vacancy Priority v2</title>
+		<link rel="icon" type="image/x-icon" href="css/img/favicon.png">
+	</head>
+
+
+	<body> 
+		<div class="content">
+			<div class="container">
+				<div class="logo-container">
+					<div class="page-logo"></div>
+					<div class="page-name">| client attributes </div>
+					<a href="/#" title="Back to vacancy priority..."> <img class="rtrn" style="border: 0;"/></img> </a>
+					<div class="page-details">logged as: {{usrname}} <i>({{usrlvl}})</i></div>
+				</div>
+				
+				<div>
+					<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for clients..." title="Search for clients">
+				</div>
+
+				<table class="table custom-table"  id="myTable">
+					<thead>
+						<tr>
+							<th class="col-left">Client Name</th>
+							<th class="col-left">Client Type</th>
+							<th class="col-left">Success Probability</th>
+							<th class="col-left">Recruitment Process</th>
+							<th class="col-left">Relations</th>	
+						</tr>
+					</thead>
+					<tbody>
+						<!-- variable declaration -->
+						{% for row in data %}
+							{% set var_client = row[3] %}
+							{% set var_type = row[18] %}
+							{% set var_prob = row[20] %}
+							{% set var_recr = row[22] %}
+							{% set var_rel = row[24] %}
+							
+						<tr>
+							<td>{{var_client}}</td>
+							<td>
+								<select class="flat-select" id="client_type" onchange="updateClient({{row[0]}}, this.id, this.value)">
+								  <option value="" selected disabled hidden>{{var_type}}</option>
+								  <option value="normal">normal</option>
+								  <option value="longtail">longtail</option>
+								  <option value="prospect">prospect</option>
+								  <option value="replacement">replacement</option>
+								  <option value="exception">exception</option>  
+								  <option value="strategic">strategic</option>  
+								</select>
+							</td>
+							<td>
+								<select class="flat-select" id="client_probability" onchange="updateClient({{row[0]}}, this.id, this.value)">
+								  <option value="" selected disabled hidden>{{var_prob}}</option>
+								  <option value="exclusion">exclusion</option>
+								  <option value="low">low</option>
+								  <option value="mid">mid</option>
+								  <option value="high">high</option>
+								  <option value="presales/prospect">presales/prospect</option>  
+								</select>
+							</td>
+							<td>
+								<select class="flat-select" id="client_recruitment" onchange="updateClient({{row[0]}}, this.id, this.value)">
+								  <option value="" selected disabled hidden>{{var_recr}}</option>
+								  <option value="tech verification">tech verification</option>
+								  <option value="interview steps">interview steps</option>
+								  <option value="response time">response time</option>
+								  <option value="one tech meeting">one tech meeting</option>
+								</select>
+							</td>
+							<td>
+								<select class="flat-select" id="client_relations" onchange="updateClient({{row[0]}}, this.id, this.value)">
+								  <option value="" selected disabled hidden>{{var_rel}}</option>
+								  <option value="new client">new client</option>
+								  <option value="good relations">good relations</option>
+								  <option value="partnership relations">partnership relations</option> 
+								</select>
+							</td>
+							{% endfor %}
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+	<!-- Script for search function -->
+	<script>
+		function myFunction() {
+		  var input, filter, table, tr, td, i, txtValue;
+		  input = document.getElementById("myInput");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("myTable");
+		  tr = table.getElementsByTagName("tr");
+		  for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[0];
+			if (td) {
+			  txtValue = td.textContent || td.innerText;
+			  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				tr[i].style.display = "";
+			  } else {
+				tr[i].style.display = "none";
+			  }
+			}       
+		  }
+		}
+	</script>
+	
+	
+	</body>
+</html>
